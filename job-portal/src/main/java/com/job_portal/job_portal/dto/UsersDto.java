@@ -18,7 +18,7 @@ public class UsersDto {
     @Email
     @NotBlank(message = "field must not be blank")
     private String email;
-    @Size(min=5, max = 8)
+    @Size(min=5, max = 50)
     @NotBlank(message = "field must not be blank")
     private String password;
     @NotBlank(message = "field must not be blank")

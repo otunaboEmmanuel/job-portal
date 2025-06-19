@@ -35,7 +35,7 @@ public class SecurityConfig {
                         "/oauth2/**","/v3/api-docs/**",
                         "/swagger-ui/**",
                         "/swagger-ui.html").permitAll().anyRequest().authenticated())
-                .formLogin(Customizer.withDefaults())
+                //.formLogin(Customizer.withDefaults())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }

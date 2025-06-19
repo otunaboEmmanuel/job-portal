@@ -20,13 +20,15 @@ public class UsersServiceImp implements UsersService {
     public Users addStudent(UsersDto users) {
         Users users1=usersRepository.findByEmail(users.getEmail()).orElse(null);
         if (users1==null){
-            return Users.builder()
+             Users newUser=Users.builder()
                     .email(users.getEmail())
                     .userName(users.getUserName())
                     .role(Roles.STUDENT)
                     .password(passwordEncoder.encode(users.getPassword()))
                     .build();
-        }else{ return null;
+            return usersRepository.save(newUser);
+        }else{
+            return null;
         }
     }
 }
