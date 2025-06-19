@@ -24,3 +24,5 @@ spring:
           model: gpt-4
 server:
   port: 8000
+jwt:
+  secret: ${SECRET}
