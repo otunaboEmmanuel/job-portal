@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UsersDto {
-    private Integer id;
+
     @Email
     @NotBlank(message = "field must not be blank")
     private String email;
@@ -23,6 +23,4 @@ public class UsersDto {
     private String password;
     @NotBlank(message = "field must not be blank")
     private String userName;
-    @Enumerated(EnumType.STRING)
-    private Roles role;
 }
