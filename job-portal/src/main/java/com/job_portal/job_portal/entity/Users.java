@@ -28,6 +28,7 @@ public class Users implements UserDetails {
     private String userName;
     @Enumerated(EnumType.STRING)
     private Roles role;
+    private boolean isActive;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
