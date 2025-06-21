@@ -20,7 +20,9 @@ import java.util.function.Function;
 public class JwtService {
     @Value("${jwt.secret}")
     private String jwtSecret;
-
+    private Integer extractId(String token){
+        return extractClaim(token,claims -> claims.get("Id", Integer.class));
+    }
     private Boolean isTokenExpired(String token){
         Date expiration=extractClaim(token,Claims::getExpiration);
         return expiration.before(new Date());
@@ -31,13 +33,14 @@ public class JwtService {
     public String extractRole(String token){
         return extractClaim(token, claims -> claims.get("role", String.class));
     }
-    private Boolean isTokenValid(String token, UserDetails userDetails){
+    public Boolean isTokenValid(String token, UserDetails userDetails){
         String username=extractClaim(token,Claims::getSubject);
         return (!Objects.equals(username, userDetails.getUsername()) && !isTokenExpired(token));
     }
-    public String generateToken(String email, String userName, Roles role){
+    public String generateToken( Integer id,String email, String userName, Roles role){
         Map<String,Object> claims=new HashMap<>();
         claims.put("email",email);
+        claims.put("Id",id);
         //claims.put("username",userName);
         claims.put("role", role);
         return createToken(claims,userName);
