@@ -7,6 +7,17 @@ spring:
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
+  mail:
+    debug: true
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
 
   jpa:
     hibernate:
@@ -26,6 +37,7 @@ spring:
             scope:
               - read:user
               - user:email
+  
   ai:
     openai:
       api-key: ${MY_API_KEY}

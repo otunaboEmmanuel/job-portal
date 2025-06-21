@@ -1,19 +1,21 @@
 package com.job_portal.job_portal.controller;
-
 import com.job_portal.job_portal.dto.LoginDto;
+import com.job_portal.job_portal.dto.PageDto;
 import com.job_portal.job_portal.dto.UsersDto;
 import com.job_portal.job_portal.entity.Users;
+import com.job_portal.job_portal.enums.Roles;
 import com.job_portal.job_portal.repository.UsersRepository;
 import com.job_portal.job_portal.service.JwtService;
 import com.job_portal.job_portal.service.UsersService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;

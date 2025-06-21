@@ -8,6 +8,5 @@ import org.springframework.stereotype.Service;
 
 public interface UsersService {
     Users addStudent(UsersDto users);
-
     Users addEmployer(EmployerDto employerDto);
 }

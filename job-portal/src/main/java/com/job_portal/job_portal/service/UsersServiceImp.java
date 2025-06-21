@@ -30,7 +30,6 @@ public class UsersServiceImp implements UsersService {
                     .userName(users.getUserName())
                     .role(Roles.STUDENT)
                     .password(passwordEncoder.encode(users.getPassword()))
-                     .isActive(true)
                     .build();
             return usersRepository.save(newUser);
         }else{
@@ -43,7 +42,6 @@ public class UsersServiceImp implements UsersService {
         Users users = usersRepository.findByEmail(employerDto.getEmail()).orElse(null);
         if (users == null) {
             Users users1 = Users.builder()
-                    .isActive(true)
                     .userName(employerDto.getUserName())
                     .email(employerDto.getEmail())
                     .password(passwordEncoder.encode(employerDto.getPassword()))
@@ -57,7 +55,6 @@ public class UsersServiceImp implements UsersService {
                     .industry(employerDto.getIndustry())
                     .build();
             employerRepository.save(employer);
-
         }
         return null;
     }
