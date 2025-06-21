@@ -1,6 +1,7 @@
 package com.job_portal.job_portal.security;
 
 import com.job_portal.job_portal.filter.JwtFilter;
+import com.job_portal.job_portal.service.CustomOAuth2SuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -18,9 +19,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 public class SecurityConfig {
     private final JwtFilter jwtAuthenticationFilter;
+    private final CustomOAuth2SuccessHandler customOAuth2SuccessHandler;
 
-    public SecurityConfig(JwtFilter jwtAuthenticationFilter) {
+    public SecurityConfig(JwtFilter jwtAuthenticationFilter, CustomOAuth2SuccessHandler customOAuth2SuccessHandler) {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+        this.customOAuth2SuccessHandler = customOAuth2SuccessHandler;
     }
 
     @Bean
@@ -36,6 +39,8 @@ public class SecurityConfig {
                         "/swagger-ui/**",
                         "/swagger-ui.html").permitAll().anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
+                .oauth2Login(oauth2->
+                        oauth2.successHandler(customOAuth2SuccessHandler))
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }

@@ -15,7 +15,17 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: Ov23lipe5SKwxsjqUJ0y
+            client-secret: 1358c663043434b0021f8283404fc292123d1073
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope:
+              - read:user
+              - user:email
   ai:
     openai:
       api-key: ${MY_API_KEY}
