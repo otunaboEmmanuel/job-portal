@@ -40,10 +40,10 @@ public class UsersController {
         Map<String,String> response=new HashMap<>();
           Users users1=usersService.addStudent(users);
           if (users1==null){
-              response.put("code","00");
+              response.put("code","100");
               response.put("message","user already exists".toUpperCase());
           }else {
-              response.put("code","100");
+              response.put("code","00");
               response.put("message","user successfully registered".toUpperCase());
           }
           return new ResponseEntity<>(response, HttpStatus.OK);
