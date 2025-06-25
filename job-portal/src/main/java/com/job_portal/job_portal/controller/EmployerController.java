@@ -2,6 +2,7 @@ package com.job_portal.job_portal.controller;
 
 import com.job_portal.job_portal.entity.JobPost;
 import com.job_portal.job_portal.service.JobPostService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -25,7 +26,7 @@ public class EmployerController {
 
     @PreAuthorize("hasRole('EMPLOYER')")
     @PostMapping("/createJob")
-    public ResponseEntity<?> createJob(@RequestBody JobPost job){
+    public ResponseEntity<?> createJob(@RequestBody @Valid JobPost job){
         Map<String, Object> response=new HashMap<>();
         JobPost jobPost= jobPostService.createJob(job);
         if (jobPost==null){
@@ -37,6 +38,7 @@ public class EmployerController {
         }
         return new ResponseEntity<>(response, HttpStatus.OK);
         }
+
 
 }
 
